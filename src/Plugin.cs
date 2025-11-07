@@ -38,18 +38,18 @@ internal class Plugin : BaseUnityPlugin {
         CodeTalkerNetwork.RegisterBinaryListener<ServerCommandPkt>(CommandManager.updateServerCommands);
 
         RegisterCommand("help", "Shows this help message", BuiltInCmds.Help, serverSide: true);
-        RegisterCommand("test", "Test command", testTopLevel);
+        // RegisterCommand("test", "Test command", testTopLevel);
         RegisterCommand("mods", "List server's installed mods!", BuiltInCmds.listMods, clientSide: false, serverSide: true);
 
         registerVanillaCommands();
         addCommandCompatibility();
-        // Custom command provider test! You can provide an optional parent provider here -------------V
+        /* Custom command provider test! You can provide an optional parent provider here -------------V
         serverCmds = new CommandProvider("server", "Test commands that run on the server side only", CommandProvider.Root);
         ModCommand? cmd = serverCmds.RegisterCommand("test2", "A test command thats server only", testCmd, clientSide: false, serverSide: true);
         serverCmds.RegisterAlias(["idk", "testAlias", "fuck", "me"], cmd);
 
         clientCmds = new CommandProvider("clientStuffs", "Test client side only nested");
-        clientCmds.RegisterCommand("test8", "A test command thats client only", testCmd);
+        clientCmds.RegisterCommand("test8", "A test command thats client only", testCmd); */
     }
 
     internal static void getHostConsole() {

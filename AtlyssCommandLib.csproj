@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
-		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AssemblyName>AtlyssCommandLib</AssemblyName>
+		<Product>$(AssemblyName)</Product>
+		<Version>1.0.0</Version>
+		<Authors>Soggy_Pancake</Authors>
+
+		<PackageProjectUrl>https://github.com/Soggy-Pancake/AtlyssCommandLib</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>GPLv3</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -37,4 +41,16 @@
 		<!-- Plugin References -->
 		<PackageReference Include="Soggy_Pancake-CodeYapper" Version="2.0.*" />
 	</ItemGroup>
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<Target Name="AllignVersions" BeforeTargets="BeforeBuild">
+		<Message Text="Setting AssemblyVersion to $(Version)" Importance="High" />
+		<Exec Command="python VersionNumFixer.py $(Version)" WorkingDirectory="$(SolutionRoot)" />
+	</Target>
 </Project>

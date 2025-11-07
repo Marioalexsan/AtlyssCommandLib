@@ -1,0 +1,10 @@
+{
+    "name": "AtlyssCommandLib",
+    "description": "A command library for Atlyss",
+    "version_number": "0.0.0",
+    "website_url": "https://github.com/Soggy-Pancake/AtlyssCommandLib",
+    "dependencies": [
+        "BepInEx-BepInExPack-5.4.2100",
+        "Soggy_Pancake-CodeYapper-2.0.1"
+    ]
+}

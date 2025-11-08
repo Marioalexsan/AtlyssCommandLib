@@ -11,7 +11,8 @@ namespace AtlyssCommandLib.API;
 public class ModCommand {
 
     internal string Command;
-    string HelpMessage;
+    string HelpMessage = "";
+    string DetailedHelpMessage = "";
 
     internal CommandCallback Callback;
     internal bool clientSideCommand;
@@ -35,12 +36,34 @@ public class ModCommand {
         serverSideCommand = serverSide;
         consoleCommand = console;
     }
+
     /// <summary>
-    /// Send help message to caller.
+    /// Creates a new ModCommand with detailed help.
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="helpMessage"></param>
+    /// <param name="detailedHelp"></param>
+    /// <param name="callback"></param>
+    /// <param name="clientSide"></param>
+    /// <param name="serverSide"></param>
+    /// <param name="console"></param>
+    public ModCommand(string command, string helpMessage, string detailedHelp, CommandCallback callback, bool clientSide, bool serverSide, bool console) {
+        Command = command;
+        HelpMessage = helpMessage.Trim();
+        DetailedHelpMessage = detailedHelp.Trim();
+        Callback = callback;
+        clientSideCommand = clientSide;
+        serverSideCommand = serverSide;
+        consoleCommand = console;
+    }
+
+
+    /// <summary>
+    /// Send help message to caller. Only called when command fails.
     /// </summary>
     /// <param name="caller"></param>
     public void printHelp(Caller caller) {
-        string message = $"/{Command} - {HelpMessage}";
+        string message = $"/{Command} - {HelpMessage} {DetailedHelpMessage}";
         NotifyCaller(caller, message);
     }
 
@@ -50,5 +73,9 @@ public class ModCommand {
     /// <returns></returns>
     public string getHelpMessage() { 
         return HelpMessage;
+    }
+
+    public string getDetailedHelpMessage() {
+        return DetailedHelpMessage;
     }
 }

@@ -29,7 +29,7 @@ public class ModCommand {
     /// <param name="console"></param>
     public ModCommand(string command, string helpMessage, CommandCallback callback, bool clientSide, bool serverSide, bool console) {
         Command = command;
-        HelpMessage = helpMessage;
+        HelpMessage = helpMessage.Trim();
         Callback = callback;
         clientSideCommand = clientSide;
         serverSideCommand = serverSide;

@@ -25,6 +25,9 @@ public class Utils {
     public static ModCommand? RegisterCommand(string command, string helpMessage, CommandCallback callback, bool clientSide = true, bool serverSide = false, bool console = false)
         => CommandManager.root.RegisterCommand(command, helpMessage, callback, clientSide, serverSide, console);
 
+    public static ModCommand? RegisterCommand(string command, string helpMessage, string detailedHelpMessage, CommandCallback callback, bool clientSide = true, bool serverSide = false, bool console = false)
+        => CommandManager.root.RegisterCommand(command, helpMessage, detailedHelpMessage, callback, clientSide, serverSide, console);
+
     /// <summary>
     /// Registers a command given a ModCommand object.
     /// </summary>

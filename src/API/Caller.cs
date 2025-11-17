@@ -22,6 +22,9 @@ public struct Caller {
     /// Whether the caller is the console.
     /// </summary>
     public readonly bool isConsole;
+
+    public readonly bool IsRemote => player != Player._mainPlayer;
+
     internal string cmdPrefix;
 
     internal Caller(string prefix, Player? _player, bool console = false) {

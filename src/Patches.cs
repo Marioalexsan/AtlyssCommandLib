@@ -100,6 +100,8 @@ internal static class Patches {
     [HarmonyPatch(typeof(PlayerMove), "Start")]
     [HarmonyPrefix]
     internal static void SendCommandList() {
+        if(Player._mainPlayer.NC()?.Network_isHostPlayer ?? false)
+            return;
         Plugin.logger?.LogWarning("SENDING SERVER COMMAND LIST!");
         CodeTalkerNetwork.SendNetworkPacket(new ServerCommandPkt());
     }

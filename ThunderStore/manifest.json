@@ -1,6 +1,6 @@
 {
     "name": "AtlyssCommandLib",
-    "description": "A command library for Atlyss",
+    "description": "[BETA] A library to easily create chat commands for Atlyss",
     "version_number": "0.0.0",
     "website_url": "https://github.com/Soggy-Pancake/AtlyssCommandLib",
     "dependencies": [

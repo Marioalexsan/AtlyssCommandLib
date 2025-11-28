@@ -3,26 +3,26 @@
 	<PropertyGroup>
 		<AssemblyName>AtlyssCommandLib</AssemblyName>
 		<Product>$(AssemblyName)</Product>
-		<Version>1.0.0</Version>
+		<Version>0.0.1</Version>
 		<Authors>Soggy_Pancake</Authors>
 
 		<PackageProjectUrl>https://github.com/Soggy-Pancake/AtlyssCommandLib</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseExpression>GPLv3</PackageLicenseExpression>
+		<PackageLicenseExpression>LGPLv3</PackageLicenseExpression>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<PropertyGroup>
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>embedded</DebugType>
 		<PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<Version>0.0.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<Optimize>true</Optimize>
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>embedded</DebugType>
-		<PathMap>$(MSBuildProjectDirectory)=.</PathMap>
 	</PropertyGroup>
 
 	<Import Project="$(SolutionRoot)Config.Build.user.props" />

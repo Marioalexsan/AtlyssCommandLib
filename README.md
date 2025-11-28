@@ -37,7 +37,7 @@ There are static methods to register your commands to the 'root' provider that c
 
 ### Commands
 
-Commands can be registered using the `RegisterCommand` method, either using the static one that registers to the root provider or by calling the method on your own provider. All commands default to being client side, however you can specify a client-side, server-side, or console command. For commands that might do local checks before forwarding to the server you can mark it as client and server side. Commands that are both client are server side have different functionality for their returns.
+Commands can be registered using the `RegisterCommand` method, either using the static one that registers to the root provider or by calling the method on your own provider. All commands default to being client side, however you can specify a client-side, server-side, or console command by creating a CommandOptions object. CommandOptions is intentially a struct to avoid the ability to overwrite the options of an already created command. For commands that might do local checks before forwarding to the server you should mark it as client and server side.
 
 Commands recieve a Caller and a string array containing the arguments.
 

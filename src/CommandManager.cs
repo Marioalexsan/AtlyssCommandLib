@@ -68,7 +68,7 @@ internal class CommandManager {
 
         // server side only
         if (!options.clientSide && options.serverSide && amServer) { 
-            Plugin.logger?.LogInfo("Server side only command!");
+            Plugin.logger?.LogDebug("Server side only command!");
             if (!cmd.Callback(caller, args))
                 cmd.printHelp(caller);
             return true;
@@ -76,7 +76,7 @@ internal class CommandManager {
 
         // client side only
         if (options.clientSide && !options.serverSide) { 
-            Plugin.logger?.LogInfo("Client side only command!");
+            Plugin.logger?.LogDebug("Client side only command!");
             if (!cmd.Callback(caller, args))
                 cmd.printHelp(caller);
             return true;
@@ -84,7 +84,7 @@ internal class CommandManager {
 
         // Server and client side
         if (options.serverSide && options.clientSide) {
-            Plugin.logger?.LogInfo("Client and server side command!");
+            Plugin.logger?.LogDebug("Client and server side command!");
             bool result = cmd.Callback(caller, args);
             if (!result && cmd.Callback != BuiltInCmds.Help)
                 cmd.printHelp(caller);

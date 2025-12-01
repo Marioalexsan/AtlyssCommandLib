@@ -265,7 +265,7 @@ public class CommandProvider {
 
             string cmd = args.Length > 0 ? args[0] : "";
 
-            targetProvider.recieveCommand(caller, cmd, args.Length > 1 ? args[1..] : []);
+            return targetProvider.recieveCommand(caller, cmd, args.Length > 1 ? args[1..] : []);
         } else {
             PrintHelp(caller, command);
         }

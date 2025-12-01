@@ -29,6 +29,7 @@ internal class Plugin : BaseUnityPlugin {
     // --------------------------------------------
 
     internal static bool chatColorsInstalled = false;
+    internal static bool homebreweryInstalled = false;
     internal static ConfigEntry<bool>? enableListingMods;
 
     void Awake() {
@@ -45,6 +46,7 @@ internal class Plugin : BaseUnityPlugin {
         enableListingMods = Config.Bind("General", "EnableModListing", true, "Enable the /mods command to list server mods.");
 
         chatColorsInstalled = Chainloader.PluginInfos.ContainsKey("StuntedRaccoon.CustomChatColors");
+        homebreweryInstalled = Chainloader.PluginInfos.ContainsKey("Homebrewery");
         logger.LogInfo($"Chatcolors {(chatColorsInstalled ? "is" : "isn't")} installed!");
 
         CodeTalkerNetwork.RegisterBinaryListener<ServerCommandPkt>(CommandManager.updateServerCommands);

@@ -21,9 +21,9 @@ internal static class Patches {
                      .ToArray();
 
     [HarmonyPrefix]
-    [HarmonyPriority(Priority.First)]
+    [HarmonyPriority(int.MaxValue)]
     [HarmonyPatch(typeof(ChatBehaviour), "Cmd_SendChatMessage")]
-    internal static void Client_SendChatMessage(ref ChatBehaviour __instance, ref bool __runOriginal, ref string _message) {
+    internal static bool Client_SendChatMessage(ref ChatBehaviour __instance, ref bool __runOriginal, ref string _message) {
         Plugin.logger?.LogInfo("Send chat message!");
 
         bool isEmote(string _message) {
@@ -42,7 +42,10 @@ internal static class Patches {
         }
 
         if(_message == "/afk" || isEmote(_message))
-            return;
+            return true;
+
+        if (_message.StartsWith("/hb") && Plugin.homebreweryInstalled) // hb compatibility
+            return true;
 
         if (_message.StartsWith("/")) {
             var args = commandSplit(_message);
@@ -50,14 +53,18 @@ internal static class Patches {
             Caller caller = new Caller { player = Player._mainPlayer };
             __runOriginal = !CommandManager.root.recieveCommand(caller, args[0], args.Length > 1 ? args[1..] : []);
 
-            if(!__runOriginal)
+            if(!__runOriginal){
                 Plugin.logger?.LogInfo("Fuck you command is not getting sent");
+                return false;
+            }
             //CommandManager.HandleCommand(_message);
         }
+
+        return true;
     }
 
     [HarmonyPrefix]
-    [HarmonyPriority(Priority.First)]
+    [HarmonyPriority(int.MaxValue)]
     [HarmonyPatch(typeof(ChatBehaviour), "Rpc_RecieveChatMessage")]
     internal static void Server_RecieveChatMessage(ref ChatBehaviour __instance, ref bool __runOriginal, ref string message) {
         Plugin.logger?.LogInfo("Recieve chat message!");
@@ -75,7 +82,7 @@ internal static class Patches {
     }
 
     [HarmonyPrefix]
-    [HarmonyPriority(Priority.First)]
+    [HarmonyPriority(int.MaxValue)]
     [HarmonyPatch(typeof(HostConsole), "Send_ServerMessage")]
     internal static void Console_RecieveCommand(ref HostConsole __instance, ref string _message, ref bool __runOriginal) {
         if (!_message.StartsWith('/') || _message.Length == 0)

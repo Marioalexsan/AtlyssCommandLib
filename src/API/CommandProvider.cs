@@ -266,8 +266,6 @@ public class CommandProvider {
             string cmd = args.Length > 0 ? args[0] : "";
 
             return targetProvider.recieveCommand(caller, cmd, args.Length > 1 ? args[1..] : []);
-        } else {
-            PrintHelp(caller, command);
         }
 
         if (this == Root && (Player._mainPlayer.NC()?.Network_isHostPlayer ?? false)) { 
@@ -277,8 +275,25 @@ public class CommandProvider {
             }
         }
 
-        // Failed to find command
-        return true;
+        
+        {   // Failed to find command
+            List<string> stack = new();
+            CommandProvider? p = this;
+            while (p?.ParentProvider != null) {
+                stack.Add(p.prefix);
+                p = p.ParentProvider;
+            }
+
+            string list = "";
+            if (stack.Count > 0) {
+                stack.Reverse();
+                list = string.Join(' ', stack);
+                list += ' ';
+            }
+
+            NotifyCaller(caller, $"\nCommand '{command}' not found! Use /help {list}to list available comands");
+            return true;
+        }
     }
 
     /// <summary>

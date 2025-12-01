@@ -51,7 +51,7 @@ internal class CommandManager {
         // Console only
         if (options.consoleCmd) { 
             if (caller.isConsole)
-                cmd.Callback(caller, args);
+                return cmd.Callback(caller, args);
             else
                 Plugin.logger?.LogError($"Command '{caller.cmdPrefix}' is console only. Caller is console: {caller.isConsole}");
             return true;

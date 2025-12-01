@@ -1,3 +1,9 @@
+## 0.0.2
+- Ignore `//` since some people use it in rp
+- Fix console commands being broken
+- only print full help message when /help is called and not when a command fails
+- better homebrewery compatibility
+
 ## 0.0.1
 - **WARNING: BETA RELEASE**
 - Server side commands have NOT been well tested so expect bugs.

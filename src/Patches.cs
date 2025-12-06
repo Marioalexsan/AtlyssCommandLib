@@ -21,7 +21,7 @@ internal static class Patches {
                      .ToArray();
 
     [HarmonyPrefix]
-    [HarmonyPriority(int.MaxValue)]
+    [HarmonyPriority(int.MinValue)]
     [HarmonyPatch(typeof(ChatBehaviour), "Cmd_SendChatMessage")]
     internal static bool Client_SendChatMessage(ref ChatBehaviour __instance, ref bool __runOriginal, ref string _message) {
         Plugin.logger?.LogInfo("Send chat message!");
@@ -67,7 +67,7 @@ internal static class Patches {
     }
 
     [HarmonyPrefix]
-    [HarmonyPriority(int.MaxValue)]
+    [HarmonyPriority(int.MinValue)]
     [HarmonyPatch(typeof(ChatBehaviour), "Rpc_RecieveChatMessage")]
     internal static void Server_RecieveChatMessage(ref ChatBehaviour __instance, ref bool __runOriginal, ref string message) {
         Plugin.logger?.LogInfo("Recieve chat message!");
@@ -85,7 +85,7 @@ internal static class Patches {
     }
 
     [HarmonyPrefix]
-    [HarmonyPriority(int.MaxValue)]
+    [HarmonyPriority(int.MinValue)]
     [HarmonyPatch(typeof(HostConsole), "Send_ServerMessage")]
     internal static void Console_RecieveCommand(ref HostConsole __instance, ref string _message, ref bool __runOriginal) {
         if (!_message.StartsWith('/') || _message.Length == 0)

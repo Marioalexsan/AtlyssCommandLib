@@ -7,6 +7,10 @@ using System.Linq;
 using UnityEngine.UI;
 using AtlyssCommandLib.API;
 using CodeTalker.Networking;
+using UnityEngine;
+using CodeTalker;
+using static AtlyssCommandLib.API.CommandProvider;
+using static CodeTalker.Compressors;
 using static AtlyssCommandLib.API.Utils;
 
 namespace AtlyssCommandLib;
@@ -126,12 +130,14 @@ internal static class Patches {
     }
 
     [HarmonyPatch(typeof(PlayerMove), "Start")]
-    [HarmonyPrefix]
-    internal static void SendCommandList() {
-        if(Player._mainPlayer.NC()?.Network_isHostPlayer ?? false)
+    [HarmonyPostfix]
+    internal static void SendCommandList(PlayerMove __instance) {
+        if(!Player._mainPlayer.NC()?._isHostPlayer ?? true)
             return;
-        Plugin.logger?.LogWarning("SENDING SERVER COMMAND LIST!");
-        CodeTalkerNetwork.SendNetworkPacket(new ServerCommandPkt());
+        Plugin.logger?.LogDebug("sending server command list!");
+        Player target = __instance.GetComponent<Player>();
+        if (target != null && target != Player._mainPlayer)
+            CodeTalkerNetwork.SendNetworkPacket(target, new ServerCommandPkt(), Compressors.CompressionType.Brotli);
     }
 
     [HarmonyPatch(typeof(AtlyssNetworkManager), "OnStartServer")]

@@ -1,7 +1,6 @@
 ﻿using System;
 using HarmonyLib;
 using System.Reflection;
-using static AtlyssCommandLib.API.CommandProvider;
 using System.Text.RegularExpressions;
 using System.Linq;
 using UnityEngine.UI;
@@ -31,7 +30,7 @@ internal static class Patches {
     [HarmonyPriority(int.MaxValue)]
     [HarmonyPatch(typeof(ChatBehaviour), "Cmd_SendChatMessage")]
     internal static bool Client_SendChatMessage(ref ChatBehaviour __instance, ref bool __runOriginal, ref string _message) {
-        Plugin.logger?.LogInfo("Send chat message!");
+        //Plugin.logger?.LogDebug("Send chat message!");
 
         if (!_message.StartsWith('/') || _message.StartsWith("//") || _message.Length == 0)
             return true;
@@ -79,8 +78,6 @@ internal static class Patches {
                 NotifyCaller(new Caller { player = Player._mainPlayer }, blockReason);
                 blockReason = "";
             }
-            //CommandManager.HandleCommand(_message);
-        }
 
             return false;
         }
@@ -92,7 +89,7 @@ internal static class Patches {
     [HarmonyPriority(int.MinValue)]
     [HarmonyPatch(typeof(ChatBehaviour), "Rpc_RecieveChatMessage")]
     internal static void Server_RecieveChatMessage(ref ChatBehaviour __instance, ref bool __runOriginal, ref string message) {
-        Plugin.logger?.LogInfo("Recieve chat message!");
+        //Plugin.logger?.LogDebug("Recieve chat message!");
 
         if (!message.StartsWith('/') || message.StartsWith("//") || message.Length == 0 || __instance == null)
             return;

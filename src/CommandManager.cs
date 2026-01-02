@@ -44,9 +44,9 @@ internal class CommandManager {
         bool amServer = caller.isHost;
         var options = cmd.options;
 
-        Plugin.logger?.LogInfo("Command being called: " + caller.cmdPrefix);
-        Plugin.logger?.LogInfo("Am server?: " + amServer);
-        Plugin.logger?.LogInfo($"cmd: server/client/console {cmd.options.serverSide} {cmd.options.clientSide} {cmd.options.consoleCmd}");
+        Plugin.logger?.LogDebug("Command being called: " + caller.cmdPrefix);
+        Plugin.logger?.LogDebug("Am server?: " + amServer);
+        Plugin.logger?.LogDebug($"cmd: server/client/console {cmd.options.serverSide} {cmd.options.clientSide} {cmd.options.consoleCmd}");
 
         // Console only
         if (options.consoleCmd) { 

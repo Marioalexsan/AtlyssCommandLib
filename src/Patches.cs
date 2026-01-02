@@ -53,9 +53,6 @@ internal static class Patches {
         if(_message == "/afk" || isEmote(_message))
             return true;
 
-        if (_message.StartsWith("/hb") && Plugin.homebreweryInstalled) // hb compatibility
-            return true;
-
         if (_message.StartsWith("/")) {
             var args = commandSplit(_message);
 

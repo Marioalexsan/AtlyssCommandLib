@@ -21,8 +21,8 @@ public class Utils {
     /// <param name="callback"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static ModCommand? RegisterCommand(string command, string helpMessage, CommandCallback callback, CommandOptions options)
-        => CommandManager.root.RegisterCommand(command, helpMessage, callback, options);
+    public static ModCommand? RegisterCommand(string command, string helpMessage, CommandCallback callback, CommandOptions? options = null)
+        => CommandManager.root.RegisterCommand(command, helpMessage, callback, options ?? new());
 
     /// <summary>
     /// Registers a new command with detailed help and CommandOptions.
@@ -33,8 +33,8 @@ public class Utils {
     /// <param name="callback"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static ModCommand? RegisterCommand(string command, string helpMessage, string detailedHelpMessage, CommandCallback callback, CommandOptions options)
-        => CommandManager.root.RegisterCommand(command, helpMessage, detailedHelpMessage, callback, options);
+    public static ModCommand? RegisterCommand(string command, string helpMessage, string detailedHelpMessage, CommandCallback callback, CommandOptions? options = null)
+        => CommandManager.root.RegisterCommand(command, helpMessage, detailedHelpMessage, callback, options ?? new());
 
     /// <summary>
     /// Registers a command given a ModCommand object.

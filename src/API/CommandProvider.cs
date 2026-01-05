@@ -87,7 +87,7 @@ public class CommandProvider {
     /// <param name="callback"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public ModCommand? RegisterCommand(string command, string helpMessage, CommandCallback callback, CommandOptions options) {
+    public ModCommand? RegisterCommand(string command, string helpMessage, CommandCallback callback, CommandOptions? options = null) {
         if (command.StartsWith('/'))
             command = command[1..];
 
@@ -96,7 +96,7 @@ public class CommandProvider {
             return null;
         }
 
-        ModCommand cmd = new ModCommand(command, helpMessage, callback, options);
+        ModCommand cmd = new ModCommand(command, helpMessage, callback, options ?? new());
         RegisterCommand(cmd);
         return cmd;
     }
@@ -110,7 +110,7 @@ public class CommandProvider {
     /// <param name="callback"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public ModCommand? RegisterCommand(string command, string helpMessage, string detailedHelpMessage, CommandCallback callback, CommandOptions options) {
+    public ModCommand? RegisterCommand(string command, string helpMessage, string detailedHelpMessage, CommandCallback callback, CommandOptions? options = null) {
         if (command.StartsWith('/'))
             command = command[1..];
 
@@ -119,7 +119,7 @@ public class CommandProvider {
             return null;
         }
 
-        ModCommand cmd = new ModCommand(command, helpMessage, detailedHelpMessage, callback, options);
+        ModCommand cmd = new ModCommand(command, helpMessage, detailedHelpMessage, callback, options ?? new());
         RegisterCommand(cmd);
         return cmd;
     }

@@ -125,12 +125,14 @@ internal static class Patches {
     [HarmonyPatch(typeof(PlayerMove), "Start")]
     [HarmonyPostfix]
     internal static void SendCommandList(PlayerMove __instance) {
-        if(!Player._mainPlayer.NC()?._isHostPlayer ?? true)
+        if (!Player._mainPlayer.NC()?._isHostPlayer ?? true)
             return;
-        Plugin.logger?.LogDebug("sending server command list!");
+
         Player target = __instance.GetComponent<Player>();
-        if (target != null && target != Player._mainPlayer)
+        if (target != null && target != Player._mainPlayer) {
+            Plugin.logger?.LogDebug("sending server command list!");
             CodeTalkerNetwork.SendNetworkPacket(target, new ServerCommandPkt(), Compressors.CompressionType.Brotli);
+        }
     }
 
     [HarmonyPatch(typeof(AtlyssNetworkManager), "OnStartServer")]

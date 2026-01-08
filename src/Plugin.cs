@@ -14,6 +14,7 @@ namespace AtlyssCommandLib;
 
 [BepInDependency("CodeTalker")]
 [BepInDependency("EasySettings", BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency("StuntedRaccoon.CustomChatColors", BepInDependency.DependencyFlags.SoftDependency)]
 [BepInPlugin(PluginInfo.GUID, PluginInfo.NAME, PluginInfo.VERSION)]
 internal class Plugin : BaseUnityPlugin {
 

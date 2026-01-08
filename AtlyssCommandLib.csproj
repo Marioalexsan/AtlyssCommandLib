@@ -9,6 +9,7 @@
 		<PackageProjectUrl>https://github.com/Soggy-Pancake/AtlyssCommandLib</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>LGPLv3</PackageLicenseExpression>
+		<RootNamespace>AtlyssCommandLib</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup>

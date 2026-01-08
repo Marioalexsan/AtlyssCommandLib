@@ -1,3 +1,9 @@
+## 0.0.5
+- Add option to send failed commands to server anyway (defaults to false)
+	- Allows server side mods like HostModeration to still recieve commands
+- Fix some bad namespaces
+- Update game version to 12026.a2
+
 ## 0.0.4
 - Always parse like in 0.0.2 but delays killing the message so other mods can still parse it
 	- Parses commands first and if fails adds a flag to prevent sending to server

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using HarmonyLib;
 
-namespace AtlyssCommandLib.src.API; 
+namespace AtlyssCommandLib.API; 
 
 /// <summary>
 /// Options for a command. This is a struct to avoid reference issues so you can reuse this without worrying.

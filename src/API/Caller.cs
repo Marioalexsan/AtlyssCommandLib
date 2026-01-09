@@ -16,7 +16,7 @@ public struct Caller {
     /// <summary>
     /// Whether the caller is the host player.
     /// </summary>
-    public bool isHost => Player._mainPlayer?.Network_isHostPlayer ?? false;
+    public bool isHost => player?.Network_isHostPlayer ?? false || isConsole;
 
     /// <summary>
     /// Whether the caller is the console.

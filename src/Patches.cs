@@ -17,7 +17,7 @@ internal static class Patches {
 
     static ScriptableEmoteList? emoteList;
     static InputField? consoleInputField;
-    static bool blockMsg = false; // Stored for postfix patches
+    public static bool blockMsg = false; // Stored for postfix patches
     public static string blockReason = "";
 
     public static string[] commandSplit(string message) => Regex.Matches(message, @"[\""].+?[\""]|[^ ]+")
@@ -57,7 +57,7 @@ internal static class Patches {
             var args = commandSplit(_message);
 
             Caller caller = new Caller { player = Player._mainPlayer };
-            blockMsg = CommandManager.root.recieveCommand(caller, args[0], args.Length > 1 ? args[1..] : []);
+            __runOriginal = !CommandManager.root.recieveCommand(caller, args[0], args.Length > 1 ? args[1..] : []);
         }
         return true;
     }
@@ -70,14 +70,14 @@ internal static class Patches {
         if (blockMsg && (!ModConfig.sendFailedCommands?.Value ?? true)) {
             blockMsg = false;
 
-            if (blockReason != "" && __runOriginal) {
+            if (blockReason != "") {
                 NotifyCaller(new Caller { player = __instance.GetComponent<Player>() }, blockReason);
                 blockReason = "";
             }
 
-            __runOriginal = false;
             return false;
         }
+        blockMsg = false; // need to always reset
         return true;
     }
 

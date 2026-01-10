@@ -247,10 +247,12 @@ public class CommandProvider {
                     Plugin.logger?.LogError($"Recieved invalid arguments for command '{command} {string.Join(" ", args)}' Error: " + e);
 
                 commands[command].printHelp(caller);
+                Patches.blockMsg = true;
                 return true;
             } catch (Exception e) {
                 Plugin.logger?.LogError($"Error executing command '{command} {string.Join(" ", args)}' Error: " + e);
                 commands[command].printHelp(caller);
+                Patches.blockMsg = true;
                 return true;
             }
         }

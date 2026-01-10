@@ -51,6 +51,11 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
+	<Target Name="FixNamespaces" BeforeTargets="BeforeBuild">
+		<Message Text="Setting AssemblyVersion to $(Version)" Importance="High" />
+		<Exec Command="python NamespaceFixer.py $(AssemblyName) src" WorkingDirectory="$(SolutionRoot)" />
+	</Target>
+	
 	<Target Name="AllignVersions" BeforeTargets="BeforeBuild">
 		<Message Text="Setting AssemblyVersion to $(Version)" Importance="High" />
 		<Exec Command="python VersionNumFixer.py $(Version)" WorkingDirectory="$(SolutionRoot)" />

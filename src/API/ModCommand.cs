@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using static AtlyssCommandLib.API.Utils;
 
-namespace AtlyssCommandLib.API; 
+namespace AtlyssCommandLib.API;
 
 /// <summary>
 /// A Command object that contains the callback and help message for a command.

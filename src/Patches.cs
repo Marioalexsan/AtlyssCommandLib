@@ -173,6 +173,7 @@ internal static class Patches {
                 __runOriginal = false;
             }
         }
+        __instance._consoleInputField.text = "";
     }
 
     [HarmonyPatch(typeof(PlayerMove), "Start")]

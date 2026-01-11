@@ -41,7 +41,7 @@ internal class Plugin : BaseUnityPlugin {
 
         CodeTalkerNetwork.RegisterBinaryListener<ServerCommandPkt>(CommandManager.updateServerCommands);
 
-        RegisterCommand("help", "Shows this help message", BuiltInCmds.Help, new(ChatCommandType.ClientSide));
+        RegisterCommand("help", "Shows this help message", BuiltInCmds.Help, new(ChatCommandType.ClientSide, consoleCmd: true));
         RegisterCommand("mods", "List server's installed mods!", BuiltInCmds.listMods, new(ChatCommandType.ServerSide));
 
         registerVanillaCommands();

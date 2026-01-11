@@ -72,4 +72,9 @@ public class ModCommand {
     public string getDetailedHelpMessage() {
         return DetailedHelpMessage;
     }
+
+    public override string ToString()
+    {
+        return $"{Command} {options}";
+    }
 }

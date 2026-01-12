@@ -31,15 +31,41 @@ public struct CommandOptions {
         chatCommand = ChatCommandType.ClientSide;
         consoleCmd = false;
     }
+    
+    /// <summary>
+    /// Default options: consoleCmd = false
+    /// </summary>
+    public CommandOptions(ChatCommandType chatCommand) {
+        this.chatCommand = chatCommand;
+        this.consoleCmd = false;
+    }
 
+    /// <summary>
+    /// Creates command options
+    /// </summary>
+    public CommandOptions(ChatCommandType chatCommand, bool consoleCmd) {
+        this.chatCommand = chatCommand;
+        this.consoleCmd = consoleCmd;
+    }
+    
     /// <summary>
     /// Full optional constructor, everything defaults to false
     /// </summary>
-    /// <param name="chatCommand"></param>
+    /// <param name="clientSide"></param>
+    /// <param name="serverSide"></param>
     /// <param name="consoleCmd"></param>
-    public CommandOptions(ChatCommandType chatCommand = ChatCommandType.None, bool consoleCmd = false) {
-        this.chatCommand = chatCommand;
+    /// <param name="hostOnly"></param>
+    [Obsolete("Use the ChatCommandType variant")]
+    public CommandOptions(bool clientSide = false, bool serverSide = false, bool consoleCmd = false, bool hostOnly = false) {
         this.consoleCmd = consoleCmd;
+        if (hostOnly)
+            chatCommand = ChatCommandType.HostOnly;
+        else if (serverSide)
+            chatCommand = ChatCommandType.ServerSide;
+        else if (clientSide)
+            chatCommand = ChatCommandType.ClientSide;
+        else
+            chatCommand = ChatCommandType.None;
     }
 
     public override string ToString()

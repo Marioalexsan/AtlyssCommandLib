@@ -61,7 +61,7 @@ internal class Plugin : BaseUnityPlugin {
         RegisterCommand("afk", "Go afk", vanillaCommandDummyCallback, serverSide);
 
         // Console commands (Send_ServerMessage)
-        CommandOptions vanillaConsoleOpt = new(consoleCmd: true)  { mustRunVanillaCode = true };
+        CommandOptions vanillaConsoleOpt = new(ChatCommandType.None, consoleCmd: true)  { mustRunVanillaCode = true };
         RegisterCommand("shutdown", "Shuts down the server with optional countdown.", vanillaCommandDummyCallback, vanillaConsoleOpt);
         RegisterCommand("cancelsd", "Cancel shutting down the server.", vanillaCommandDummyCallback, vanillaConsoleOpt);
         RegisterCommand("starthost", "initalizes the server. Server instance must be shut down to initalize.", vanillaCommandDummyCallback, vanillaConsoleOpt);
@@ -95,7 +95,7 @@ internal class Plugin : BaseUnityPlugin {
         RegisterCommand("test-cs", "Run a clientside command", BuiltInCmds.testClientSide, new(ChatCommandType.ClientSide));
         RegisterCommand("test-ss", "Run a serverside command", BuiltInCmds.testServerSide, new(ChatCommandType.ServerSide));
         RegisterCommand("test-host", "Run a host only command", BuiltInCmds.testHostOnlyCmd, new(ChatCommandType.HostOnly));
-        RegisterCommand("test-cons", "Run a console command", BuiltInCmds.testConsoleCmd, new(consoleCmd: true));
+        RegisterCommand("test-cons", "Run a console command", BuiltInCmds.testConsoleCmd, new(ChatCommandType.None, consoleCmd: true));
 
         // Add others if desired
     }
